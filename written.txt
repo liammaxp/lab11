@@ -1,2 +1,6 @@
 2a.
+With GPU batched rendering, the FPS converged to approximately 12.5, while the non-batched sf::Sprite version averaged approximately 42 FPS over the last 20 reported values. Although batching reduces the number of draw calls, the batched version was around 3.4 times slower in my measurements.
+Re-uploading vertex buffers and the transforms texture every frame may contribute to the overhead
 2b.
+Give each sprite a depth value and write that value to the clip-space z coordinate in the vertex shader, then enable GL_DEPTH_TEST and clear the depth buffer each frame. 
+The rasterizer will perform depth comparisons automatically, so sprites can occlude each other without manually sorting opaque sprites
